@@ -1,0 +1,16 @@
+Package: toxvaldbBMDh
+Type: Package
+Title: Calculates BMDh Values From Records in ToxValDB
+Version: 0.1.0
+Author: Richard Judson
+Maintainer: Richard Judson <judson.richard@epa.gov>
+Description: This package extracts data fro mteh ToxValDB database, filters it
+    for redundant records (this redundancy should be reduced in later versions),
+    calculates study-level BMD valuesand finally calculates chemical-level BMD values.
+    To run th entire process, uses the functions export.for.bmdh(), filter.for.bmdh(), 
+    bmd.per.study() and bmd.per.chemical(). The fucntion driver() runs all of the 
+    methods sequentially.
+    All of the input and output data lives in the  data/ folder
+License: BSD3
+Encoding: UTF-8
+LazyData: true
