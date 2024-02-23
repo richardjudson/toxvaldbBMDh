@@ -1,18 +1,17 @@
 library(ggplot2)
 #-------------------------------------------------------------------------------
-#' Plot the BMDs vs teh regulatory values for different percentiles
+#' Plot the BMDs vs the regulatory values for different percentiles and determine the best fit
 #'
-#' `bmdh.percentile.plot` Helps determine the optimal percentile
+#' `bmdh.percentile.plot` Helps determine the optimal percentile. The output file shows the
+#' fit statistics for different percentiles, and one should select the one with the lowest RMSE and highest R2.
 #'
 #' @param to.file If TRUE, send the plot to a file
 #' @param toxval.db Database version
 #' @param sys.date The date of the database export
-#' @param regulatory.sources This is the list of sources that will be used to select the
-#' optimal quantile  to use for selecting the final chemical-level BMDh.
+#' @param minstudies - only chemicals with this minimum number of studies will be used in the calculation
+#' @param cutoff.logsd Only chemicals with their log SD of BMDh values will be used in the calculation
 #' @return Write a file with the results: toxval_PODs_for_BMDh chemical level {toxval.db} {sys.date}.xlsx
 #' @export
-#' Plot the structural vs pod distance
-#' @param dir The directory where the lists are stored
 #-------------------------------------------------------------------------------
 bmdh.percentile.plot <- function(to.file=F,toxval.db="res_toxval_v95",sys.date="2024-02-23",minstudies=10,cutoff.logsd=2) {
   printCurrentFunction()

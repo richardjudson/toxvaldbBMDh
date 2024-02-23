@@ -8,9 +8,10 @@ Description: This package extracts data fro mteh ToxValDB database, filters it
     for redundant records (this redundancy should be reduced in later versions),
     calculates study-level BMD valuesand finally calculates chemical-level BMD values.
     To run th entire process, uses the functions export.for.bmdh(), filter.for.bmdh(), 
-    bmd.per.study() and bmd.per.chemical(). The fucntion driver() runs all of the 
-    methods sequentially.
+    bmd.per.study(), bmd.per.chemical() and bmdh.percentile.plot(). The function driver() runs all of the 
+    methods sequentially. The last function provides the best percentile to use.
     All of the input and output data lives in the  data/ folder
 License: BSD3
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.3.1

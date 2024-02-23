@@ -16,4 +16,5 @@ driver <- function(toxval.db="res_toxval_v95",sys.date="2024-02-23",user,passwor
   filter.for.bmdh(toxval.db,sys.date)
   bmdh.per.study(toxval.db,sys.date)
   bmdh.per.chemical(toxval.db,sys.date)
+  bmdh.percentile.plot(T,toxval.db,sys.date,minstudies=3,cutoff.logsd=2)
 }
