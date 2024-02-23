@@ -17,9 +17,7 @@
 bmdh.per.chemical <- function(toxval.db="res_toxval_v95",sys.date="2024-02-23",
                               regulatory.sources=c("IRIS",
                                                    "PPRTV (CPHEA)",
-                                                   "ATSDR MRLs 2020",
                                                    "ATSDR MRLs 2022",
-                                                   "ATSDR PFAS",
                                                    "ATSDR PFAS 2021",
                                                    "EPA OPP",
                                                    "HEAST")) {
@@ -29,7 +27,7 @@ bmdh.per.chemical <- function(toxval.db="res_toxval_v95",sys.date="2024-02-23",
   file = paste0(dir,"results/ToxValDB BMDh per study ",toxval.db," ",sys.date,".xlsx")
   print(file)
   mat = read.xlsx(file)
-
+  mat = mat[!is.na(mat$bmdh),]
   res = unique(mat[,c("dtxsid","casrn","name")])
   res$casrn = NA
   res$name = NA

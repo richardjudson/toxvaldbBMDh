@@ -1,11 +1,23 @@
+library(ggplot2)
 #-------------------------------------------------------------------------------
+#' Plot the BMDs vs teh regulatory values for different percentiles
+#'
+#' `bmdh.percentile.plot` Helps determine the optimal percentile
+#'
+#' @param to.file If TRUE, send the plot to a file
+#' @param toxval.db Database version
+#' @param sys.date The date of the database export
+#' @param regulatory.sources This is the list of sources that will be used to select the
+#' optimal quantile  to use for selecting the final chemical-level BMDh.
+#' @return Write a file with the results: toxval_PODs_for_BMDh chemical level {toxval.db} {sys.date}.xlsx
+#' @export
 #' Plot the structural vs pod distance
 #' @param dir The directory where the lists are stored
 #-------------------------------------------------------------------------------
-bmdh.percentile.plot <- function(to.file=F,minstudies=10,cutoff.logsd=2) {
+bmdh.percentile.plot <- function(to.file=F,toxval.db="res_toxval_v95",sys.date="2024-02-23",minstudies=10,cutoff.logsd=2) {
   printCurrentFunction()
-  dir = "data/bmd/"
-  file = paste0(dir,"bmdh chemical level.xlsx")
+  dir = "data/"
+  file = paste0(dir,"results/ToxValDB BMDh per chemical ",toxval.db," ",sys.date,".xlsx")
   print(file)
   mat = read.xlsx(file)
   mat = mat[mat$studies>=minstudies,]
@@ -50,23 +62,25 @@ bmdh.percentile.plot <- function(to.file=F,minstudies=10,cutoff.logsd=2) {
     res[i,"pval"] = p
     res[i,"chemicals"] = length(y)
   }
+  pdata = pdata[!is.na(pdata$RA),]
   print(res)
   p = ggplot(data=pdata,aes(x=experiment,y=RA))  +
     ggtitle(paste0("BMDh Percentiles")) +
     geom_point(size=0.1) +
     theme_bw() +
     facet_grid(~col) +
-    xlim(-3,3) + ylim(-3,3) +
+    xlim(-4,4) + ylim(-4,4) +
     xlab("Experimental") +
     ylab("Human RA") +
-    geom_segment(aes(x=-3,xend=3,y=-3,yend=3))
+    geom_segment(aes(x=-4,xend=4,y=-4,yend=4))
   print(p)
 
-  file = paste0(dir,"bmdh.percentile.plot.xlsx")
+  file = paste0(dir,"results/ToxValDB BMDh per chemical percentiles ",toxval.db," ",sys.date,".xlsx")
   write.xlsx(res,file)
 
   if(to.file) {
-    fname = paste0(dir,"bmdh.percentile.plot.pdf")
+    fname = paste0(dir,"results/ToxValDB BMDh per chemical ",toxval.db," ",sys.date,".pdf")
+    #fname = paste0(dir,"bmdh.percentile.plot.pdf")
     ggsave(plot = p, width = 8, height = 2.5, dpi = 300, filename =fname)
     dev.off()
   }
