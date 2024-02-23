@@ -2,7 +2,7 @@
 % Please edit documentation in R/bmdh.percentile.plot.R
 \name{bmdh.percentile.plot}
 \alias{bmdh.percentile.plot}
-\title{Plot the BMDs vs teh regulatory values for different percentiles}
+\title{Plot the BMDs vs the regulatory values for different percentiles and determine the best fit}
 \usage{
 bmdh.percentile.plot(
   to.file = F,

@@ -7,12 +7,16 @@
 bmdh.aurisano.check.plot(
   to.file = F,
   toxval.db = "res_toxval_v95",
-  sys.date = "2024-01-04"
+  sys.date = "2024-02-23"
 )
 }
 \arguments{
-\item{dir}{The directory where the lists are stored}
+\item{to.file}{If TRUE, send the plot to a file}
+
+\item{toxval.db}{Database version}
+
+\item{sys.date}{The date of the database export}
 }
 \description{
-Plot the different between the Aurisano and current BMDh values
+`bmdh.per.study` plots the different between the Aurisano and current BMDh values
 }

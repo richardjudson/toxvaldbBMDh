@@ -1,11 +1,16 @@
 #-------------------------------------------------------------------------------
 #' Plot the different between the Aurisano and current BMDh values
-#' @param dir The directory where the lists are stored
+#'
+#' `bmdh.per.study` plots the different between the Aurisano and current BMDh values
+#' @param to.file If TRUE, send the plot to a file
+#' @param toxval.db Database version
+#' @param sys.date The date of the database export
+#' @export
 #-------------------------------------------------------------------------------
-bmdh.aurisano.check.plot <- function(to.file=F,toxval.db="res_toxval_v95",sys.date="2024-01-04") {
+bmdh.aurisano.check.plot <- function(to.file=F,toxval.db="res_toxval_v95",sys.date="2024-02-23") {
   printCurrentFunction()
-  dir = "data/bmd/"
-  file = paste0(dir,"toxval_PODs_for_BMDh ",toxval.db," ",sys.date,".xlsx")
+  dir = "data/"
+  file = paste0(dir,"results/ToxValDB BMDh per study ",toxval.db," ",sys.date,".xlsx")
   print(file)
   res = read.xlsx(file)
   x = res$bmdh
@@ -26,7 +31,7 @@ bmdh.aurisano.check.plot <- function(to.file=F,toxval.db="res_toxval_v95",sys.da
     #geom_segment(aes(x=-3,xend=3,y=-3,yend=3))
   print(p)
   if(to.file) {
-    fname = paste0(dir,"bmdh.aurisano.check.plot.pdf")
+    fname = paste0(dir,"results/bmdh.aurisano.check.plot.pdf")
     ggsave(plot = p, width = 5, height = 5, dpi = 300, filename =fname)
     dev.off()
   }
